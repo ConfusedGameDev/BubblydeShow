@@ -2,11 +2,15 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection.Emit;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -46,13 +50,57 @@ public class GameManager : MonoBehaviour
 
     public GameObject bubbleExplosion;
     bool gameStarted=false;
+    public TableReference tableReference;
+    public TableEntryReference winReference, looseReference, questionReference, bubblyReference;
+
+    public TMPro.TMP_FontAsset romajiAsset, nihongoAsset, thaiAsset, arabicAsset;
+
+    public List<TMPro.TextMeshProUGUI> labels;
+    void setFont(string locale)
+    {
+        labels = FindObjectsByType<TMPro.TextMeshProUGUI>(FindObjectsSortMode.None).ToList();
+        switch(locale)
+        {
+            case "Japanese (ja)":
+                foreach (var label in labels)
+                {
+                    label.font = nihongoAsset;
+                }
+                break;
+            case "Thai (th)":
+                foreach (var label in labels)
+                {
+                    label.font = thaiAsset;
+                }
+                break;
+            case "Arabic (ar)":
+                foreach (var label in labels)
+                {
+                    label.font = arabicAsset;
+                }
+                break;
+            default:
+                foreach (var label in labels)
+                {
+                    label.font = arabicAsset;
+                }
+                break;
+
+
+        }
+
+    }
     IEnumerator Start()
     {
         InitializeGame();
         timer = 3f;
-        while(timer > 0.1f)
+       // setFont(LocalizationSettings.SelectedLocale.LocaleName);
+
+        while (timer > 0.1f)
         {
-            timer-=Time.deltaTime;
+            //label.text = LocalizationSettings.StringDatabase.GetLocalizedString(tableReference, winReference);
+              
+            timer -= Time.deltaTime;
             timerUI.fillAmount = 0;
             timerLabel.text = Mathf.CeilToInt(timer).ToString() ;
             yield return null;
@@ -96,7 +144,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < bubbles.Count; i++)
         {
             originalBubbles.Add( bubbles[i]);
-            var startpos = transform.position - (Vector3.right * 8f) + (Vector3.fwd * 15f) - Vector3.up * 6f + Vector3.right * i * 2.25f;           
+            var startpos = transform.position - (Vector3.right * 14f) + (Vector3.fwd * 15f) - Vector3.up * 7.5f + Vector3.right * i * 2.25f;           
             var newCat= Instantiate(catStep,startpos, Quaternion.identity).GetComponent<CatRigController>();
             newCat.initialPos = startpos ;
             newCat.rootOffset= Vector3.up*bubbles[i];
@@ -135,12 +183,12 @@ public class GameManager : MonoBehaviour
         currentBubbleGO = Instantiate(bubblePrefabs[rnd], leftPos, Quaternion.identity);
         var currentBubbleScript = currentBubbleGO.GetComponent<Bubble>();
         currentBubbleScript.mapBubble(bubbles[currentIndex]);
-        currentBubbleScript.offsetParent(leftPos * 40f);
+        currentBubbleScript.offsetParent(Vector3.one* -500f);
         nextBubbleGO = Instantiate(bubblePrefabs[rnd], rightPos, Quaternion.identity);
         var nextBubbleScript = nextBubbleGO.GetComponent<Bubble>();
         nextBubbleScript.mapBubble(bubbles[nextIndex]);
         label.text = currentBubbleScript.mondai;
-        nextBubbleScript.offsetParent(rightPos * 40f);
+        nextBubbleScript.offsetParent(Vector3.one * 140.3f);
     }
 
     public void OnLeftClick()
@@ -287,7 +335,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator animateStepsEnding(int index)
     {
-        var duration = cats[index].offset/ UnityEngine.Random.Range(0.5f, 2.5f);
+        var duration =   UnityEngine.Random.Range(1f, 4.5f);
         var delta = 0f;
         float originalOffset= cats[index].offset;
           
@@ -302,8 +350,9 @@ public class GameManager : MonoBehaviour
         }
         if(bubbleExplosion)
         {
-            cats[index].gameObject.SetActive(false);
             Destroy( Instantiate(bubbleExplosion, cats[index].rootBone.position, Quaternion.identity),3f);
+                        cats[index].gameObject.SetActive(false);
+
         }
     }
     void RemoveCurrentFromUnused()
