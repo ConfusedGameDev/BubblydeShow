@@ -69,10 +69,10 @@ public class GameManager : MonoBehaviour
         Vector3 rightPos = new Vector3(2, 0, 0);
     
         System.Random rnd = new System.Random();
-        currentBubbleGO = Instantiate(bubblePrefabs[rnd.next()], leftPos, Quaternion.identity);
+        currentBubbleGO = Instantiate(bubblePrefabs[rnd.Next()], leftPos, Quaternion.identity);
         var currentBubbleScript = currentBubbleGO.GetComponent<Bubble>();
         currentBubbleScript.mapBubble(bubbles[currentIndex]);
-        nextBubbleGO = Instantiate(bubblePrefabs[rnd.next()],rightPos, Quaternion.identity);
+        nextBubbleGO = Instantiate(bubblePrefabs[rnd.Next()],rightPos, Quaternion.identity);
         var nextBubbleScript = nextBubbleGO.GetComponent<Bubble>();
         nextBubbleScript.mapBubble(bubbles[nextIndex]);
     }
