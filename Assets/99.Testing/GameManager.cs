@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Bubble Data")]
     public List<int> bubbles = new List<int>();
+    public List<int> originalBubbles = new List<int>();
 
     [Header("Prefabs & UI")]
     public List<GameObject> bubblePrefabs;
@@ -36,9 +38,12 @@ public class GameManager : MonoBehaviour
     public GameObject step;
 
     public List<GameObject> steps;
+    public List<CatRigController> cats;
+    public GameObject catStep;
     void Start()
     {
         InitializeGame();
+        
     }
 
     void Update()
@@ -51,6 +56,8 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+
+         
     }
 
     void InitializeGame()
@@ -65,11 +72,13 @@ public class GameManager : MonoBehaviour
         ShowComparisonBubbles();
         for (int i = 0; i < bubbles.Count; i++)
         {
-            var startpos = transform.position - (Vector3.right * 8f) + (Vector3.fwd * 15f) - Vector3.up * 6f; ;
-            var newStep = Instantiate(step, startpos + Vector3.right * i * 1.25f, Quaternion.identity);
-            newStep.transform.localScale = Vector3.one + Vector3.up * bubbles[i];
-            newStep.GetComponentInChildren<Renderer>().material.color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
-            steps.Add(newStep);
+            originalBubbles.Add( bubbles[i]);
+            var startpos = transform.position - (Vector3.right * 8f) + (Vector3.fwd * 15f) - Vector3.up * 6f + Vector3.right * i * 2.25f;           
+            var newCat= Instantiate(catStep,startpos, Quaternion.identity).GetComponent<CatRigController>();
+            newCat.initialPos = startpos ;
+            newCat.rootOffset= Vector3.up*bubbles[i];
+            newCat.offset= bubbles[i];
+            cats.Add(newCat);
         }
     }
 
@@ -80,6 +89,18 @@ public class GameManager : MonoBehaviour
         unusedBubbles = bubbles.Take(countUnsorted).OrderBy(x => rnd.Next()).ToList();
     }
 
+    void bubbleSort()
+    {
+        for (int i = 0; i < originalBubbles.Count - 1; i++)
+        {
+            if (originalBubbles[i] > originalBubbles[i + 1])
+            {
+                var tmp = originalBubbles[i + 1];
+                originalBubbles[i + 1] = originalBubbles[i];
+                originalBubbles[i] = tmp;
+            }
+        }
+    }
     void ShowComparisonBubbles()
     {
         if (currentBubbleGO) Destroy(currentBubbleGO);
@@ -101,6 +122,7 @@ public class GameManager : MonoBehaviour
 
     public void OnLeftClick()
     {
+        
         if (isGameDone) return;
         if (bubbles[currentIndex] >= bubbles[nextIndex])
         {
@@ -119,7 +141,7 @@ public class GameManager : MonoBehaviour
                 ResetUnusedList();
                 currentIndex = 0;
             }
-            StartCoroutine(animateSteps(0.5f));
+            StartCoroutine(animateSteps(0.5f,bubbles));
             if (hasWon())
             {
                 Win();
@@ -166,7 +188,7 @@ public class GameManager : MonoBehaviour
                 ResetUnusedList();
                 currentIndex = 0;
             }
-            StartCoroutine(animateSteps(0.5f));
+            StartCoroutine(animateSteps(0.5f,bubbles));
             if (hasWon())
             {
                 Win();
@@ -186,16 +208,50 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator animateSteps(float duration)
+    public IEnumerator AnimateBubblesort()
+    {
+        for (int j   = 0; j < originalBubbles.Count; j++)
+        {
+            for (int i = 0; i < originalBubbles.Count - 1; i++)
+            {
+                if (originalBubbles[i] > originalBubbles[i + 1])
+                {
+                    var tmp = originalBubbles[i + 1];
+                    originalBubbles[i + 1] = originalBubbles[i];
+                    originalBubbles[i] = tmp;
+                    yield return animateSteps(0.35f,originalBubbles);
+                }
+                Debug.Log("testi");
+
+
+            }
+            Debug.Log("testj");
+        }
+        StartCoroutine(onGameComplete());
+
+
+    }
+    public IEnumerator animateSteps(float duration, List<int> data)
     {
         var delta = 0f;
+        List<float> originalOffsets= new List<float>();
+        List<Vector3> originalRootOffsets= new List<Vector3>();
+        for (int x = 0; x < cats.Count; x++)
+        {
+            originalOffsets.Add(cats[x].offset);
+            originalRootOffsets.Add(cats[x].rootOffset);
+        }
         while (delta < duration)
         {
-            yield return null;
-            for (int x = 0; x < steps.Count; x++)
+            
+            for (int x = 0; x < cats.Count; x++)
             {
-                steps[x].transform.localScale = Vector3.Lerp(steps[x].transform.localScale, Vector3.one + Vector3.up * bubbles[x],Time.deltaTime);
-
+                // steps[x].transform.localScale = Vector3.Lerp(steps[x].transform.localScale, Vector3.one + Vector3.up * bubbles[x],Time.deltaTime);
+                var newCat= cats[x];
+                newCat.rootOffset = Vector3.Lerp(originalRootOffsets[x], Vector3.up * data[x],delta/duration);
+                newCat.offset = Mathf.Lerp(originalOffsets[x], data[x], delta/duration );
+                delta += Time.deltaTime;
+                yield return new WaitForEndOfFrame();
             }
         }
     }
@@ -216,21 +272,51 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         if(isGameDone) return;
+
+        if (timerUI)
+        {
+            timerUI.gameObject.SetActive(false);
+        }
+        if (timerLabel)
+        {
+            timerLabel.gameObject.SetActive(false);
+        }
+        if(currentBubbleGO)
+            Destroy(currentBubbleGO);
+        if (nextBubbleGO)
+            Destroy(nextBubbleGO);
+        {
+            
+        }
         if (label)
             label.text = "ゲーム　オバー";
  
-        StartCoroutine(onGameComplete());
         isGameDone= true;
+        StartCoroutine(AnimateBubblesort());
+
     }
 
     void Win()
     {
         if (isGameDone) return;
+        StartCoroutine(AnimateBubblesort());
+        if (timerUI)
+        {
+            timerUI.gameObject.SetActive(false);
+        }
+        if (timerLabel)
+        {
+            timerLabel.gameObject.SetActive(false);
+        }
+        if (currentBubbleGO)
+            Destroy(currentBubbleGO);
+        if (nextBubbleGO)
+            Destroy(nextBubbleGO);
+         
         if (label)
             label.text = "バッブリ";
-
-        StartCoroutine(onGameComplete());
-        isGameDone = true;
+        
+         isGameDone = true;
     }
 
 
