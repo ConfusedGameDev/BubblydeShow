@@ -955,6 +955,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 516432891235256022, guid: 9f9f7e535ee0fa843a4ab0c71a71f841, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -26.6666
+      objectReference: {fileID: 0}
+    - target: {fileID: 519394972356948199, guid: 9f9f7e535ee0fa843a4ab0c71a71f841, type: 3}
+      propertyPath: endPosX
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 829972804165939556, guid: 9f9f7e535ee0fa843a4ab0c71a71f841, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11
@@ -998,6 +1006,14 @@ PrefabInstance:
     - target: {fileID: 2342524735006293092, guid: 9f9f7e535ee0fa843a4ab0c71a71f841, type: 3}
       propertyPath: m_Name
       value: BackDanceCatsCore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912197433687720813, guid: 9f9f7e535ee0fa843a4ab0c71a71f841, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -35.55556
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018757445326072849, guid: 9f9f7e535ee0fa843a4ab0c71a71f841, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.7777
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
