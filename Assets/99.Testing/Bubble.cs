@@ -5,6 +5,10 @@ public class Bubble : MonoBehaviour
     /// <summary>
     /// Called to map an integer value to this bubble’s visual representation.
     /// </summary>
+    /// 
+
+    public string mondai = "Which is bigger?!";
+
     public virtual void mapBubble(int x)
     {
         

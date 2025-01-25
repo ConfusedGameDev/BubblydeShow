@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -27,6 +29,9 @@ public class GameManager : MonoBehaviour
     private GameObject currentBubbleGO;
     private GameObject nextBubbleGO;
 
+    public TextMeshProUGUI label;
+
+    bool isGameDone;
     void Start()
     {
         InitializeGame();
@@ -65,21 +70,23 @@ public class GameManager : MonoBehaviour
     {
         if (currentBubbleGO) Destroy(currentBubbleGO);
         if (nextBubbleGO) Destroy(nextBubbleGO);
-        Vector3 leftPos = new Vector3(-2, 0, 0);
-        Vector3 rightPos = new Vector3(2, 0, 0);
+        Vector3 leftPos = new Vector3(-5, 0, 0);
+        Vector3 rightPos = new Vector3(5, 0, 0);
     
-        System.Random rnd = new System.Random();
-        currentBubbleGO = Instantiate(bubblePrefabs[rnd.Next()], leftPos, Quaternion.identity);
+        int rnd = UnityEngine.Random.Range(0,bubblePrefabs.Count);
+        currentBubbleGO = Instantiate(bubblePrefabs[rnd], leftPos, Quaternion.identity);
         var currentBubbleScript = currentBubbleGO.GetComponent<Bubble>();
         currentBubbleScript.mapBubble(bubbles[currentIndex]);
-        nextBubbleGO = Instantiate(bubblePrefabs[rnd.Next()],rightPos, Quaternion.identity);
+        nextBubbleGO = Instantiate(bubblePrefabs[rnd],rightPos, Quaternion.identity);
         var nextBubbleScript = nextBubbleGO.GetComponent<Bubble>();
         nextBubbleScript.mapBubble(bubbles[nextIndex]);
+        label.text = currentBubbleScript.mondai;
     }
 
     public void OnLeftClick()
     {
-        if (bubbles[currentIndex] > bubbles[nextIndex])
+        if (isGameDone) return;
+        if (bubbles[currentIndex] >= bubbles[nextIndex])
         {
             int temp = bubbles[nextIndex];
             bubbles[nextIndex] = bubbles[currentIndex];
@@ -109,6 +116,7 @@ public class GameManager : MonoBehaviour
 
     public void OnRightClick()
     {
+        if (isGameDone) return;
         if (bubbles[currentIndex] <= bubbles[nextIndex])
         {
             currentIndex = nextIndex;
@@ -157,14 +165,32 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
+        if(isGameDone) return;
+        if (label)
+            label.text = "Game Over!";
         Debug.Log("Game Over!");
+
+        StartCoroutine(onGameComplete());
+        isGameDone= true;
     }
 
     void Win()
     {
-        Debug.Log("You Win!");
+        if (isGameDone) return;
+        if (label)
+            label.text = "You win!";
+
+        StartCoroutine(onGameComplete());
+        isGameDone = true;
     }
 
+
+
+    IEnumerator onGameComplete()
+    {
+        yield return new WaitForSeconds(5f);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
     public void OnLeftClickInput(InputAction.CallbackContext context)
     {
         if (context.performed)
