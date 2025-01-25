@@ -154,17 +154,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbles: 
+  originalBubbles: 
   bubblePrefabs:
   - {fileID: 7303815867315453090, guid: dfd8a12633546474080af8a6aaab291f, type: 3}
   - {fileID: 7985137342223075401, guid: be15eab5b863f5b45889859e7954fd30, type: 3}
   - {fileID: 7985137342223075401, guid: 219ebb588ea7c964c87940744b929fa9, type: 3}
   - {fileID: 7985137342223075401, guid: b7b729e0e3f5d834c9c37770e16ad3be, type: 3}
   timerUI: {fileID: 0}
-  timerDuration: 5
+  timerDuration: 3
   numberOfValues: 12
   label: {fileID: 0}
+  timerLabel: {fileID: 0}
   step: {fileID: 9057745561566370078, guid: 6bc45ac10e911b540bf9f0e7b05d834d, type: 3}
   steps: []
+  cats: []
+  catStep: {fileID: 5622357403660466384, guid: 6aab103f6b87bd94fb61be65328615c9, type: 3}
 --- !u!114 &3080884182181576890
 MonoBehaviour:
   m_ObjectHideFlags: 0
