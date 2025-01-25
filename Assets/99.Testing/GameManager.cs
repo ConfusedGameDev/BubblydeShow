@@ -45,14 +45,32 @@ public class GameManager : MonoBehaviour
     public AudioSource source;
 
     public GameObject bubbleExplosion;
-    void Start()
+    bool gameStarted=false;
+    IEnumerator Start()
     {
         InitializeGame();
-        
+        timer = 3f;
+        while(timer > 0.1f)
+        {
+            timer-=Time.deltaTime;
+            timerUI.fillAmount = 0;
+            timerLabel.text = Mathf.CeilToInt(timer).ToString() ;
+            yield return null;
+        }
+        yield return new WaitForEndOfFrame();
+        timerLabel.text = "";
+        gameStarted = true;
+        timer = timerDuration;
+        ShowComparisonBubbles();
+
     }
 
     void Update()
     {
+        if (!gameStarted)
+        {
+            return;
+        }
         timer -= Time.deltaTime;
         timerUI.fillAmount = timer / timerDuration;
         if(timerLabel)
@@ -74,7 +92,7 @@ public class GameManager : MonoBehaviour
         timer = timerDuration;
         ResetUnusedList();
         GetNext();
-        ShowComparisonBubbles();
+        
         for (int i = 0; i < bubbles.Count; i++)
         {
             originalBubbles.Add( bubbles[i]);
@@ -127,7 +145,10 @@ public class GameManager : MonoBehaviour
 
     public void OnLeftClick()
     {
-        
+        if (!gameStarted)
+        {
+            return;
+        }
         if (isGameDone) return;
         if (bubbles[currentIndex] >= bubbles[nextIndex])
         {
@@ -178,6 +199,10 @@ public class GameManager : MonoBehaviour
     }
     public void OnRightClick()
     {
+        if (!gameStarted)
+        {
+            return;
+        }
         if (isGameDone) return;
         if (bubbles[currentIndex] <= bubbles[nextIndex])
         {
@@ -262,7 +287,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator animateStepsEnding(int index)
     {
-        var duration = UnityEngine.Random.Range(0.5f, 2.5f);
+        var duration = cats[index].offset/ UnityEngine.Random.Range(0.5f, 2.5f);
         var delta = 0f;
         float originalOffset= cats[index].offset;
           
