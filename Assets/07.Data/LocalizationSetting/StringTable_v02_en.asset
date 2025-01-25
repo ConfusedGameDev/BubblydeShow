@@ -58,6 +58,14 @@ MonoBehaviour:
     m_Localized: Quit
     m_Metadata:
       m_Items: []
+  - m_Id: 109327415422976
+    m_Localized: Game Clear!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 109524694511616
+    m_Localized: Game Over
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

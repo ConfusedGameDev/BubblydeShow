@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TitleMenuController : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class TitleMenuController : MonoBehaviour
     public GameObject OptionPanel;
 
     public TMP_Text currentLanguageText;
+
+    public Slider bgmSlider;
+    public Slider sfxSlider;
+
 
     void Start()
     {
@@ -60,8 +65,8 @@ public class TitleMenuController : MonoBehaviour
             else
             {
                 if (cursorIndex == 0) SelectNextLanguage();
-                //if (cursorIndex == 1) //
-                //if (cursorIndex == 2) //
+                if (cursorIndex == 1) AddBGMVolume();
+                if (cursorIndex == 2) AddSFXVolume();
                 if (cursorIndex == 3)
                 {
                     page = 0;
@@ -128,15 +133,30 @@ public class TitleMenuController : MonoBehaviour
     void ApplyLanguage()
     {
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[currentLocaleIndex];
-        UpdateLanguageText();
     }
 
 
-    void UpdateLanguageText()
+    void AddBGMVolume()
     {
-        if (currentLanguageText != null)
+        if (bgmSlider.value < 0.99f)
         {
-            currentLanguageText.text = LocalizationSettings.SelectedLocale.LocaleName;
+            bgmSlider.value += 0.25f;
+        }
+        else
+        {
+            bgmSlider.value = 0.0f;
+        }
+    }
+
+    void AddSFXVolume()
+    {
+        if (sfxSlider.value < 0.99f)
+        {
+            sfxSlider.value += 0.25f;
+        }
+        else
+        {
+            sfxSlider.value = 0.0f;
         }
     }
 
