@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Shared
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Shared
+  m_GUID: 1dcef7edb1477d24b9727f7b3053ba92
+  m_SerializeEntries:
+  - m_GUID: 2b869b34ac6bbec468612dda6c333cd5
+    m_Address: Assets/07.Data/LocalizationSettings/StringTable_v02 Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 38c2580969f073b4fbbe192ac96ed2c8
+    m_Address: Assets/07.Data/LocalizationSettings/TestingTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ddcec7f3c082cf499fd6a957c76092c
+    m_Address: Assets/07.Data/LocalizationSettings/TestingStringTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f586378b4e144a9851e7b34d9b748ee
+    m_Address: LiberationSans SDF
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ar
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de63d333603415444b5c04fed73f50ba
+    m_Address: Assets/07.Data/LocalizationSettings/FontTable_v02 Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 399ab165fb58e664d8a0cae6a51bc355, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8ac34e4588ea8504b83065f2fbfe02ac, type: 2}
+    - {fileID: 11400000, guid: 26fc2a2c3049e334fba4ca4de56e399e, type: 2}
