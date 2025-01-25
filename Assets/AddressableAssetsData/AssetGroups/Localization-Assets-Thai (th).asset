@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Localization-Assets-Arabic (ar)
+  m_Name: Localization-Assets-Thai (th)
   m_EditorClassIdentifier: 
-  m_GroupName: Localization-Assets-Arabic (ar)
-  m_GUID: 081daa09cc4dbe248be9cc96325b3fda
+  m_GroupName: Localization-Assets-Thai (th)
+  m_GUID: 784efe78fd2ccec44a4bcb7f546547c2
   m_SerializeEntries:
-  - m_GUID: 8ac531289ff7ab94981762a362b81e71
-    m_Address: Diwanltr SDF
+  - m_GUID: b66af23839148aa44bf91fa8e26a18f4
+    m_Address: Fahkwang-Regular SDF
     m_ReadOnly: 1
     m_SerializedLabels:
-    - Locale-ar
+    - Locale-th
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 399ab165fb58e664d8a0cae6a51bc355, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 217e1dccc2691784b8e29445ec41599b, type: 2}
-    - {fileID: 11400000, guid: 1fa351f93794b464f9c47631fb8778b5, type: 2}
+    - {fileID: 11400000, guid: 123abc32cb73dd84dafd93126a03fe5a, type: 2}
+    - {fileID: 11400000, guid: 275a70dca78318140bdca189bbaec15a, type: 2}

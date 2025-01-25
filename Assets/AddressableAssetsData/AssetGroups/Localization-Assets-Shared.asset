@@ -34,8 +34,10 @@ MonoBehaviour:
     m_Address: LiberationSans SDF
     m_ReadOnly: 1
     m_SerializedLabels:
-    - Locale-ar
     - Locale-en
+    - Locale-es
+    - Locale-fil
+    - Locale-fr
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: de63d333603415444b5c04fed73f50ba
     m_Address: Assets/07.Data/LocalizationSettings/FontTable_v02 Shared Data.asset
