@@ -1,9 +1,22 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class VolumeSlider : MonoBehaviour
 {
-    public void SetBGMVolume(float volume)
+    public Slider bgmSlider;
+    public Slider seSlider;
+
+    private void Start()
     {
-        //SoundManager.instance.SetBGMVolume(volume);
+        if (bgmSlider != null)
+        {
+            bgmSlider.value = SoundManager.Instance.bgmVolume;
+            bgmSlider.onValueChanged.AddListener(SoundManager.Instance.SetBGMVolume);
+        }
+
+        if (seSlider != null)
+        {
+            seSlider.value = SoundManager.Instance.seVolume;
+            seSlider.onValueChanged.AddListener(SoundManager.Instance.SetSEVolume);
+        }
     }
 }

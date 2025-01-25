@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/04.Scenes/Shimizu/Shimizu_Title.unity
+    guid: 0fc95c03e47f37645b29b75685e4d767
+  - enabled: 1
+    path: Assets/04.Scenes/Shimizu/Shimizu_Game.unity
+    guid: 320464bb8d3b1f8489f03c0fc6afe775
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 638e7e23845aa6e4caf3e316cbbb635e, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
