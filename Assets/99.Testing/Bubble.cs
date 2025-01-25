@@ -8,7 +8,16 @@ public class Bubble : MonoBehaviour
     /// 
 
     public string mondai = "Which is bigger?!";
+    public Transform parentObj;
+    public Vector3 parentOffset;
 
+    public void offsetParent(Vector3 newOffset)
+    {
+        if (parentObj != null)
+        {
+            parentOffset = newOffset;
+        }
+    }
     public virtual void mapBubble(int x)
     {
         
