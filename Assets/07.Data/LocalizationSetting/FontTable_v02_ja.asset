@@ -17,7 +17,15 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: de63d333603415444b5c04fed73f50ba, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 13272325730304
+    m_Localized: abdf314efd82d624c8a793217165c3db
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13663864008704
+    m_Localized: 'abdf314efd82d624c8a793217165c3db[Katakanaboy-R Atlas Material]'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

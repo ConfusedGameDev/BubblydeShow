@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 4396469628928
-    m_Localized: 8f586378b4e144a9851e7b34d9b748ee
+    m_Localized: 8ac531289ff7ab94981762a362b81e71
     m_Metadata:
       m_Items: []
   - m_Id: 4396503183360
-    m_Localized: '8f586378b4e144a9851e7b34d9b748ee[LiberationSans SDF Material]'
+    m_Localized: '8ac531289ff7ab94981762a362b81e71[Diwanltr Atlas Material]'
     m_Metadata:
       m_Items: []
   references:

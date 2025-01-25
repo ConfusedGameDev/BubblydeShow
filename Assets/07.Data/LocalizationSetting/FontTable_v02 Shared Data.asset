@@ -14,9 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: FontTable_v02
   m_TableCollectionNameGuidString: de63d333603415444b5c04fed73f50ba
-  m_Entries: []
+  m_Entries:
+  - m_Id: 13272325730304
+    m_Key: SDF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13663864008704
+    m_Key: Material
+    m_Metadata:
+      m_Items: []
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 8081921211321811212
+    - rid: 8081921211321811213
   m_KeyGenerator:
     rid: 8081921211321811198
   references:
@@ -26,3 +36,33 @@ MonoBehaviour:
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
         m_CustomEpoch: 1737796655614
+    - rid: 8081921211321811212
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 13272325730304
+          m_TableCodes:
+          - ar
+          - en
+          - fil
+          - fr
+          - ja
+          - es
+          - th
+        m_TypeString: TMPro.TMP_FontAsset, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+    - rid: 8081921211321811213
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 13663864008704
+          m_TableCodes:
+          - ar
+          - th
+          - es
+          - fr
+          - fil
+          - en
+          - ja
+        m_TypeString: UnityEngine.Material, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null

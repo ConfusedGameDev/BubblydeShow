@@ -19,23 +19,23 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 862256803840
-    m_Localized: 
+    m_Localized: Wika
     m_Metadata:
       m_Items: []
   - m_Id: 12931924406272
-    m_Localized: 
+    m_Localized: Filipino
     m_Metadata:
       m_Items: []
   - m_Id: 2401641869312
-    m_Localized: 
+    m_Localized: Audio
     m_Metadata:
       m_Items: []
   - m_Id: 5555620065280
-    m_Localized: 
+    m_Localized: Musika sa Lataran
     m_Metadata:
       m_Items: []
   - m_Id: 5605762969600
-    m_Localized: 
+    m_Localized: Mga Epekto ng Tunog
     m_Metadata:
       m_Items: []
   references:
