@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     public AudioClip leftClip, rightClip;
     public AudioSource source;
 
-    public GameObject bubbleExplosion;
+    public GameObject  catDissapearTL;
     bool gameStarted=false;
     public TableReference tableReference;
     public TableEntryReference winReference, looseReference, questionReference, bubblyReference;
@@ -183,12 +183,14 @@ public class GameManager : MonoBehaviour
         currentBubbleGO = Instantiate(bubblePrefabs[rnd], leftPos, Quaternion.identity);
         var currentBubbleScript = currentBubbleGO.GetComponent<Bubble>();
         currentBubbleScript.mapBubble(bubbles[currentIndex]);
-        currentBubbleScript.offsetParent(Vector3.one* -500f);
+        currentBubbleScript.offsetParent(Vector3.right* -500f);
+        currentBubbleScript.upScaleParent(2f);
         nextBubbleGO = Instantiate(bubblePrefabs[rnd], rightPos, Quaternion.identity);
         var nextBubbleScript = nextBubbleGO.GetComponent<Bubble>();
         nextBubbleScript.mapBubble(bubbles[nextIndex]);
         label.text = currentBubbleScript.mondai;
-        nextBubbleScript.offsetParent(Vector3.one * 140.3f);
+        nextBubbleScript.offsetParent(Vector3.right * 140.3f);
+        nextBubbleScript.upScaleParent(2f);
     }
 
     public void OnLeftClick()
@@ -348,9 +350,9 @@ public class GameManager : MonoBehaviour
             delta += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        if(bubbleExplosion)
+        if(catDissapearTL)
         {
-            Destroy( Instantiate(bubbleExplosion, cats[index].rootBone.position, Quaternion.identity),3f);
+            Instantiate(catDissapearTL, cats[index].rootBone.position, Quaternion.identity);
                         cats[index].gameObject.SetActive(false);
 
         }
