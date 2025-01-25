@@ -990,6 +990,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Bubbly",
+            "id": "66495e61-71b9-4d91-ae8c-49b45bcd4448",
+            "actions": [
+                {
+                    "name": "Left",
+                    "type": "Button",
+                    "id": "bc546117-8c69-4756-8951-7957e8c9969c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "a0ac2c58-24ef-46ee-a330-6147eb4ff1b1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bb55a1fa-199b-411a-8336-ab959e917dad",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f49f627d-38a3-4b84-9bdd-8881b349c1fc",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
