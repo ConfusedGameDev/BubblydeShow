@@ -622,6 +622,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1769698370}
     - target: {fileID: 5369215489627045959, guid: bb7300e1426bde04d980c34e694ffc36, type: 3}
+      propertyPath: numberOfValues
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369215489627045959, guid: bb7300e1426bde04d980c34e694ffc36, type: 3}
       propertyPath: bubbleExplosion
       value: 
       objectReference: {fileID: 8135271646154491342, guid: d76ec74229c7457498fe1c632541fa04, type: 3}
