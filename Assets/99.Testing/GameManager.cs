@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
     public List<GameObject> steps;
     public List<CatRigController> cats;
     public GameObject catStep;
+
+    public AudioClip leftClip, rightClip;
+    public AudioSource source;
+
+    public GameObject bubbleExplosion;
     void Start()
     {
         InitializeGame();
@@ -221,13 +226,12 @@ public class GameManager : MonoBehaviour
                     originalBubbles[i] = tmp;
                     yield return animateSteps(0.35f,originalBubbles);
                 }
-                Debug.Log("testi");
-
+ 
 
             }
-            Debug.Log("testj");
-        }
-        StartCoroutine(onGameComplete());
+         }
+
+        
 
 
     }
@@ -253,6 +257,28 @@ public class GameManager : MonoBehaviour
                 delta += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
+        }
+    }
+
+    public IEnumerator animateStepsEnding(int index)
+    {
+        var duration = UnityEngine.Random.Range(0.5f, 2.5f);
+        var delta = 0f;
+        float originalOffset= cats[index].offset;
+          
+         
+        while (delta < duration)
+        {
+
+            var newCat = cats[index];
+            newCat.offset = Mathf.Lerp(originalOffset, 0, delta / duration);
+            delta += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        if(bubbleExplosion)
+        {
+            cats[index].gameObject.SetActive(false);
+            Destroy( Instantiate(bubbleExplosion, cats[index].rootBone.position, Quaternion.identity),3f);
         }
     }
     void RemoveCurrentFromUnused()
@@ -292,7 +318,14 @@ public class GameManager : MonoBehaviour
             label.text = "ゲーム　オバー";
  
         isGameDone= true;
-        StartCoroutine(AnimateBubblesort());
+        for (int j = 0; j < cats.Count; j++)
+        {
+            StartCoroutine(animateStepsEnding(j));
+        }
+
+
+        StartCoroutine(onGameComplete());
+
 
     }
 
@@ -323,7 +356,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator onGameComplete()
     {
-        yield return new WaitForSeconds(5f);
+         
+        yield return new WaitForSeconds(6f);
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
     public void OnLeftClickInput(InputAction.CallbackContext context)
@@ -331,6 +365,11 @@ public class GameManager : MonoBehaviour
         if (context.performed)
         {
             OnLeftClick();
+            if(source && leftClip && rightClip)
+            {
+                source.Stop();
+                source.PlayOneShot(leftClip);
+            }
         }
     }
 
@@ -338,6 +377,11 @@ public class GameManager : MonoBehaviour
     {
         if (context.performed)
         {
+            if (source && leftClip && rightClip)
+            {
+                source.Stop();
+                source.PlayOneShot(rightClip);
+            }
             OnRightClick();
         }
     }
