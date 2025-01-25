@@ -2,6 +2,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 public class CatScaler : MonoBehaviour {
 	[SerializeField] private GameObject cat_;
 
