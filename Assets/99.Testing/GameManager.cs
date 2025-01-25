@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
             timer = timerDuration;
             RemoveCurrentFromUnused();
             GetNext();
+            if(!isGameDone)
             ShowComparisonBubbles();
         }
         else
@@ -134,7 +135,8 @@ public class GameManager : MonoBehaviour
             timer = timerDuration;
             RemoveCurrentFromUnused();
             GetNext();
-            ShowComparisonBubbles();
+            if (!isGameDone)
+                ShowComparisonBubbles();
         }
         else
         {
@@ -161,15 +163,18 @@ public class GameManager : MonoBehaviour
         int nextVal = unusedBubbles[0];
         unusedBubbles.RemoveAt(0);
         nextIndex = bubbles.IndexOf(nextVal);
+        if(nextIndex== currentIndex)
+        {
+            Win() ;
+        }
     }
 
     void GameOver()
     {
         if(isGameDone) return;
         if (label)
-            label.text = "Game Over!";
-        Debug.Log("Game Over!");
-
+            label.text = "ゲーム　オバー";
+ 
         StartCoroutine(onGameComplete());
         isGameDone= true;
     }
@@ -178,7 +183,7 @@ public class GameManager : MonoBehaviour
     {
         if (isGameDone) return;
         if (label)
-            label.text = "You win!";
+            label.text = "バッブリ";
 
         StartCoroutine(onGameComplete());
         isGameDone = true;
