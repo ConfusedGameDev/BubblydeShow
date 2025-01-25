@@ -42,6 +42,22 @@ MonoBehaviour:
     m_Localized: Bubbly de SHOW
     m_Metadata:
       m_Items: []
+  - m_Id: 160894629883904
+    m_Localized: Done
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162316444413952
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 163175655976960
+    m_Localized: Option
+    m_Metadata:
+      m_Items: []
+  - m_Id: 163223781421056
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
