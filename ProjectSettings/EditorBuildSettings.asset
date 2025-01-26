@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/99.Testing/AritakeLAB/prev/titlescreen_aritakelab_prev.unity
-    guid: f3fbad6cc40fbcb498cab1812900ca0d
+    path: Assets/99.Testing/AritakeLAB/TitleScreen_NoAim.unity
+    guid: d259e2977616b064ea3d3b6b3a0f9f19
   - enabled: 1
     path: Assets/04.Scenes/GameScene.unity
     guid: ddd36aaca5b64bb4eb53a9b82d86625d
