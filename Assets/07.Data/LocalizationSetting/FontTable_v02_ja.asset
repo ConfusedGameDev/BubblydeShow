@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 13272325730304
-    m_Localized: abdf314efd82d624c8a793217165c3db
+    m_Localized: f87450bc823486144bd2be6b22dff7fb
     m_Metadata:
       m_Items: []
   - m_Id: 13663864008704
-    m_Localized: 'abdf314efd82d624c8a793217165c3db[Katakanaboy-R Atlas Material]'
+    m_Localized: 'f87450bc823486144bd2be6b22dff7fb[craftmincho Atlas Material]'
     m_Metadata:
       m_Items: []
   references:

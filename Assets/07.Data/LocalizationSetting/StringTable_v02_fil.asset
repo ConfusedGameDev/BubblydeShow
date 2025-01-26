@@ -42,6 +42,34 @@ MonoBehaviour:
     m_Localized: Bubbly na SHOW
     m_Metadata:
       m_Items: []
+  - m_Id: 109327415422976
+    m_Localized: Tagumpay sa Laro!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 109524694511616
+    m_Localized: Tapos na ang Laro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160894629883904
+    m_Localized: Tapos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162316444413952
+    m_Localized: Simula
+    m_Metadata:
+      m_Items: []
+  - m_Id: 163175655976960
+    m_Localized: Opsyon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 163223781421056
+    m_Localized: Tigil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227740188061696
+    m_Localized: "Alin ang mas malaki, \nmas mataas o mas mahaba?"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

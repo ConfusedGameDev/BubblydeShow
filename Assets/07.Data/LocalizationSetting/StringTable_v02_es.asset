@@ -42,6 +42,34 @@ MonoBehaviour:
     m_Localized: Bubbly de SHOW
     m_Metadata:
       m_Items: []
+  - m_Id: 163223781421056
+    m_Localized: Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 163175655976960
+    m_Localized: "Opci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 162316444413952
+    m_Localized: Comenzar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160894629883904
+    m_Localized: Hecho
+    m_Metadata:
+      m_Items: []
+  - m_Id: 109524694511616
+    m_Localized: Fin del Juego
+    m_Metadata:
+      m_Items: []
+  - m_Id: 109327415422976
+    m_Localized: "\xA1Juego Completado!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227740188061696
+    m_Localized: "\xBFCu\xE1l es m\xE1s grande, \nm\xE1s alto o m\xE1s largo?"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
