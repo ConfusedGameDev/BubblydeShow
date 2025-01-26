@@ -22,6 +22,7 @@ public class TitleMenuController : MonoBehaviour
     public Slider bgmSlider;
     public Slider sfxSlider;
 
+    public int targetSceneID = 1;
 
     void Start()
     {
@@ -53,7 +54,7 @@ public class TitleMenuController : MonoBehaviour
         {
             if (page == 0)
             {
-                if (cursorIndex == 0) LoadScene(1);
+                if (cursorIndex == 0) LoadScene(targetSceneID);
                 if (cursorIndex == 1)
                 {
                     page = 1;

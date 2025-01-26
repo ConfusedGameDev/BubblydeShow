@@ -66,6 +66,10 @@ MonoBehaviour:
     m_Localized: "\xA1Juego Completado!"
     m_Metadata:
       m_Items: []
+  - m_Id: 227740188061696
+    m_Localized: "\xBFCu\xE1l es m\xE1s grande, \nm\xE1s alto o m\xE1s largo?"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
