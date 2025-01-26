@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     public List<CatRigController> cats;
     public GameObject catStep;
 
-    public AudioClip leftClip, rightClip, correctClip, wrongClip, clearClip;
+    public AudioClip leftClip, rightClip, correctClip, wrongClip, clearClip,turnOffTVClip;
     public AudioSource fxSource, bgmSource;
 
     public GameObject catDissapearTL;
@@ -200,7 +200,11 @@ public class GameManager : MonoBehaviour
         currentBubbleScript.upScaleParent(1.2f);
         nextBubbleGO = Instantiate(bubblePrefabs[rnd], rightPos, Quaternion.identity);
         var nextBubbleScript = nextBubbleGO.GetComponent<Bubble>();
+
         nextBubbleScript.mapBubble(bubbles[nextIndex] * valuesOffset);
+        
+        
+        
         label.text = currentBubbleScript.mondai;
         nextBubbleScript.offsetParent(Vector3.right * rightOffset);
         nextBubbleScript.upScaleParent(1.2f);
@@ -344,6 +348,9 @@ public class GameManager : MonoBehaviour
 
             }
         }
+
+        yield return new WaitForSeconds(2.5f);
+        StartCoroutine(onGameComplete());
 
 
 
@@ -489,21 +496,26 @@ public class GameManager : MonoBehaviour
             label.text = "ƒoƒbƒuƒŠ";
         
          isGameDone = true;
+
     }
 
 
 
     IEnumerator onGameComplete()
-    {
-            
-        
+    {        
         yield return new WaitForSeconds(2f);
         if (gameOverVideo)
             gameOverVideo.SetActive(true);
+        if (turnOffTVClip && fxSource)
+        {
+            fxSource.Stop();
+            fxSource.PlayOneShot(turnOffTVClip);
+        }
         yield return new WaitForSeconds(1.3f);
             if(gameOverLabel)
             gameOverLabel.SetActive(false);
-        yield return new WaitForSeconds(2.3f);
+        yield return new WaitForSeconds(1.9f);
+        
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
     public void OnLeftClickInput(InputAction.CallbackContext context)
