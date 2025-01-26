@@ -67,6 +67,10 @@ MonoBehaviour:
     m_Key: Which is bigger, taller or longer?
     m_Metadata:
       m_Items: []
+  - m_Id: 264570698641408
+    m_Key: Replay
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
