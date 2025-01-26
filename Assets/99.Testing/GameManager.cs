@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     public List<CatRigController> cats;
     public GameObject catStep;
 
-    public AudioClip leftClip, rightClip;
+    public AudioClip leftClip, rightClip, correctClip,wrongClip;
     public AudioSource source;
 
     public GameObject  catDissapearTL;
@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
     public TMPro.TMP_FontAsset romajiAsset, nihongoAsset, thaiAsset, arabicAsset;
 
     public List<TMPro.TextMeshProUGUI> labels;
+
+    public int valuesOffset = 2;
     void setFont(string locale)
     {
         labels = FindObjectsByType<TMPro.TextMeshProUGUI>(FindObjectsSortMode.None).ToList();
@@ -128,12 +130,18 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
+        //delete
+        for (int i = 0; i < cats.Count; i++)
+        {
+            cats[i].transform.position = transform.position - (Vector3.right * 14f) + (Vector3.fwd * 15f) - Vector3.up * 7.5f + Vector3.right * i * 2.25f + stepOffset;
+        }
          
     }
 
     void InitializeGame()
     {
         bubbles = Enumerable.Range(1, numberOfValues).ToList();
+        
         bubbles = bubbles.OrderBy(x => rnd.Next()).ToList();
         sortedItems = 0;
         currentIndex = 0;
@@ -144,7 +152,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < bubbles.Count; i++)
         {
             originalBubbles.Add( bubbles[i]);
-            var startpos = transform.position - (Vector3.right * 14f) + (Vector3.fwd * 15f) - Vector3.up * 7.5f + Vector3.right * i * 2.25f;           
+            var startpos = transform.position -  (Vector3.right * 14f) + (Vector3.fwd * 15f) - Vector3.up * 7.5f + Vector3.right * i * 2.25f+stepOffset;           
             var newCat= Instantiate(catStep,startpos, Quaternion.identity).GetComponent<CatRigController>();
             newCat.initialPos = startpos ;
             newCat.rootOffset= Vector3.up*bubbles[i];
@@ -152,7 +160,7 @@ public class GameManager : MonoBehaviour
             cats.Add(newCat);
         }
     }
-
+    public Vector3 stepOffset;
     void ResetUnusedList()
     {
         int countUnsorted = bubbles.Count - sortedItems;
@@ -182,15 +190,15 @@ public class GameManager : MonoBehaviour
         int rnd = UnityEngine.Random.Range(0, bubblePrefabs.Count);
         currentBubbleGO = Instantiate(bubblePrefabs[rnd], leftPos, Quaternion.identity);
         var currentBubbleScript = currentBubbleGO.GetComponent<Bubble>();
-        currentBubbleScript.mapBubble(bubbles[currentIndex]);
+        currentBubbleScript.mapBubble(bubbles[currentIndex]*valuesOffset);
         currentBubbleScript.offsetParent(Vector3.right* -500f);
-        currentBubbleScript.upScaleParent(2f);
+        currentBubbleScript.upScaleParent(1.2f);
         nextBubbleGO = Instantiate(bubblePrefabs[rnd], rightPos, Quaternion.identity);
         var nextBubbleScript = nextBubbleGO.GetComponent<Bubble>();
-        nextBubbleScript.mapBubble(bubbles[nextIndex]);
+        nextBubbleScript.mapBubble(bubbles[nextIndex]*valuesOffset);
         label.text = currentBubbleScript.mondai;
         nextBubbleScript.offsetParent(Vector3.right * 140.3f);
-        nextBubbleScript.upScaleParent(2f);
+        nextBubbleScript.upScaleParent(1.2f);
     }
 
     public void OnLeftClick()
@@ -202,6 +210,11 @@ public class GameManager : MonoBehaviour
         if (isGameDone) return;
         if (bubbles[currentIndex] >= bubbles[nextIndex])
         {
+            if (source && correctClip)
+            {
+                source.Stop();
+                source.PlayOneShot(correctClip);
+            }
             int temp = bubbles[nextIndex];
             bubbles[nextIndex] = bubbles[currentIndex];
             bubbles[currentIndex] = temp;
@@ -234,6 +247,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if (source && wrongClip)
+            {
+                source.Stop();
+                source.PlayOneShot(wrongClip);
+            }
             GameOver();
         }
     }
@@ -256,6 +274,11 @@ public class GameManager : MonoBehaviour
         if (isGameDone) return;
         if (bubbles[currentIndex] <= bubbles[nextIndex])
         {
+            if(source && correctClip)
+            {
+                source.Stop();
+                source.PlayOneShot(correctClip);
+            }
             currentIndex = nextIndex;
             if (currentIndex == bubbles.Count - sortedItems - 1)
             {
@@ -284,6 +307,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if (source && wrongClip)
+            {
+                source.Stop();
+                source.PlayOneShot(wrongClip);
+            }
             GameOver();
         }
     }
